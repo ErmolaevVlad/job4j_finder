@@ -39,18 +39,7 @@ public class SearchFiles {
     }
 
     public static String createMask(String mask) {
-        char[] chars = mask.toCharArray();
-        StringBuilder stringBuilder = new StringBuilder().append("^");
-        for (char i : chars) {
-            if ('*' == i) {
-                 stringBuilder.append("\\S{1,}");
-            } else if ('?' == i) {
-                stringBuilder.append("\\S");
-            } else {
-                stringBuilder.append(i);
-            }
-        }
-        return stringBuilder.toString();
+        return "^" + mask.replace("*", "\\S{1,}").replace("?", "\\S");
     }
 
     public static boolean checkArgument(ArgsName argsName)  {
